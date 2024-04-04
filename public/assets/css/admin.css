@@ -1,0 +1,9 @@
+.skin-purple .main-header .navbar .dropdown-menu li a {
+  color: #333;
+}
+#processing {
+	color: green;
+}
+.skin-green .main-header .navbar .dropdown-menu li a {
+    color: #000;
+}

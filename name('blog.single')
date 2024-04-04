@@ -1,0 +1,18 @@
+ <div class="row">
+        <!-- Scrolling Long modal -->
+        <div class="col-lg-6 stretched_card mt-mob-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="modal fade" id="exampleModalCenter">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scrolling Long modal -->
+    </div>

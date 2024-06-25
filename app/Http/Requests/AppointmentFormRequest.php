@@ -27,7 +27,7 @@ class AppointmentFormRequest extends FormRequest
             'fullname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email:filter', 'max:255'],
             'phone' => ['required', 'string'],
-            'website' => '',
+            'message' => ['required', 'string'],
         ];
     }
 }

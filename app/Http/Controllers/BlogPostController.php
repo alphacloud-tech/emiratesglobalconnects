@@ -53,8 +53,8 @@ class BlogPostController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(800, 562, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(1639, 591, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -106,8 +106,8 @@ class BlogPostController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(1280, 800, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(1639, 591, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);

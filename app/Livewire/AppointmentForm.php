@@ -16,8 +16,16 @@ class AppointmentForm extends Component
     public $email;
     public $phone;
     public $website;
+    public $message;
 
-
+    protected $messages = [
+        'fullname.required' => 'Name field is required.', // Custom error message for required email
+        'email.required' => 'Email field is required.', // Custom error message for required email
+        'message.required' => 'Message field is required.', // Custom error message for required email
+        'phone.required' => 'Phone field is required.', // Custom error message for required email
+        // 'subject.required' => 'Subject field is required.', // Custom error message for required email
+        // Add custom error messages for other fields and rules as needed
+    ];
 
 
     public function rules()
@@ -26,10 +34,10 @@ class AppointmentForm extends Component
         return (new AppointmentFormRequest())->rules();
     }
 
-    public function update($propertiesName)
-    {
-        $this->validate($propertiesName);
-    }
+    // public function update($propertiesName)
+    // {
+    //     $this->validate($propertiesName);
+    // }
 
     public function render()
     {
@@ -43,17 +51,17 @@ class AppointmentForm extends Component
         $validated = $this->validate();
 
         // Create a Complain model instance and save it to the database
-        Complain::create([
-            'fullname' => $this->fullname,
-            'email' => $this->email,
-            // 'message' => $this->message,
-            'phone' => $this->phone,
-            'website' => $this->website,
-        ]);
+        // Complain::create([
+        //     'fullname' => $this->fullname,
+        //     'email' => $this->email,
+        //     // 'message' => $this->message,
+        //     'phone' => $this->phone,
+        //     'website' => $this->website,
+        // ]);
 
 
         // Send email
-        Mail::to('adesanjo470@gmail.com')->send(new AppointmentFormSubmitted($validated));
+        Mail::to(env('CONTACTUS'))->send(new AppointmentFormSubmitted($validated));
 
         // Reset form fields after submission
         $this->reset();

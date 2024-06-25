@@ -18,11 +18,11 @@
                             <i class="feather ft-trending-up text-primary"></i>
                         </div>
                         <div class="text-white">
-                            <p class="mt-xl-0 text-xl-left mb-2">Blog Posts</p>
+                            <p class="mt-xl-0 text-xl-left mb-2">Services</p>
                             <div
                                 class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                                <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1 text-white">{{ count($blogs) }}</h3>
-                                <small class="stats_icon">3%<span class="feather ft-chevron-up"></span></small>
+                                <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1 text-white">{{ count($services) }}</h3>
+                                <small class="stats_icon"><span class="feather ft-chevron-up"></span></small>
                             </div>
                         </div>
                     </div>
@@ -37,11 +37,11 @@
                             <i class="feather fa fa-user text-success"></i>
                         </div>
                         <div class="text-white">
-                            <p class="mt-xl-0 text-xl-left mb-2">Total Orders</p>
+                            <p class="mt-xl-0 text-xl-left mb-2">Blog Posts</p>
                             <div
                                 class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                                <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1 text-white">2300</h3>
-                                <small class="stats_icon">5% <span class="feather ft-chevron-up"></span></small>
+                                <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1 text-white">{{ count($blogs) }}</h3>
+                                <small class="stats_icon"> <span class="feather ft-chevron-up"></span></small>
                             </div>
                         </div>
                     </div>
@@ -53,14 +53,16 @@
                 <div class="card-body">
                     <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-center justify-content-between">
                         <div class="icon-rounded">
-                            <i class="feather ft-users text-danger"></i>
+                            <i class="feather fa fa-inbox text-danger"></i>
                         </div>
                         <div class="text-white">
-                            <p class="mt-xl-0 text-xl-left mb-2">New Customers</p>
+                            <p class="mt-xl-0 text-xl-left mb-2">
+                                Messages/Complains
+                            </p>
                             <div
                                 class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                                <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1 text-white">2765</h3>
-                                <small class="stats_icon">2% <span class="feather ft-chevron-up"></span></small>
+                                <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1 text-white">{{ count($messages) }}</h3>
+                                <small class="stats_icon"><span class="feather ft-chevron-up"></span></small>
                             </div>
                         </div>
                     </div>
@@ -72,14 +74,14 @@
                 <div class="card-body">
                     <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-center justify-content-between">
                         <div class="icon-rounded">
-                            <i class="feather ft-box text-dark"></i>
+                            <i class="feather fa fa-user text-dark"></i>
                         </div>
                         <div class="text-white">
-                            <p class="mt-xl-0 text-xl-left mb-2">Total Products</p>
+                            <p class="mt-xl-0 text-xl-left mb-2">Our Teams</p>
                             <div
                                 class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                                <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1 text-white">628</h3>
-                                <small class="stats_icon">7% <span class="feather ft-chevron-up"></span></small>
+                                <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1 text-white">{{ count($teams) }}</h3>
+                                <small class="stats_icon"> <span class="feather ft-chevron-up"></span></small>
                             </div>
                         </div>
                     </div>
@@ -87,7 +89,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 

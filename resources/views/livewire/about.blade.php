@@ -28,27 +28,34 @@
                               <h2>
                                   {{ $about->title }}
                               </h2>
-                              <p>{!! $about->content_short !!}</p>
+
+                              @if (request()->is('/'))
+                                  <p>{!! $about->content_short !!}</p>
+                              @else
+                                  <p>{!! $about->description !!}</p>
+                              @endif
 
                           </div>
                           <div class="ft-about-feature-list-warpper">
-                              @foreach ($abouts as $item)
-                                  <div class="ft-about-feature-list-item d-flex align-items-center wow fadeInUp"
-                                      data-wow-delay="0ms" data-wow-duration="1500ms">
-                                      <div
-                                          class="ft-about-feature-icon d-flex align-items-center justify-content-center">
-                                          <i class="{{ $item->bar_bg_color }}"></i>
-                                      </div>
-                                      <div class="ft-about-feature-text headline pera-content">
-                                          <h3>{{ $item->bar_title }}</h3>
-                                          <p>{{ $item->bar_percent }} </p>
-                                      </div>
-                                  </div>
-                              @endforeach
 
 
 
                               @if (request()->is('/'))
+
+                                  @foreach ($abouts as $item)
+                                      <div class="ft-about-feature-list-item d-flex align-items-center wow fadeInUp"
+                                          data-wow-delay="0ms" data-wow-duration="1500ms">
+                                          <div
+                                              class="ft-about-feature-icon d-flex align-items-center justify-content-center">
+                                              <i class="{{ $item->bar_bg_color }}"></i>
+                                          </div>
+                                          <div class="ft-about-feature-text headline pera-content">
+                                              <h3>{{ $item->bar_title }}</h3>
+                                              <p>{{ $item->bar_percent }} </p>
+                                          </div>
+                                      </div>
+                                  @endforeach
+
                                   <div class="ft-btn wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                                       <a class="d-flex justify-content-center align-items-center"
                                           href="{{ route('about.page') }}">Explore More</a>

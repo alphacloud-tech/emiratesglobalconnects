@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -128,8 +128,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{ route('skills.destroy', $item->id) }}"
-                                                        method="POST">
+                                                    <form action="{{ route('skills.destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
 

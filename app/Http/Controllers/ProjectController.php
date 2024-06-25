@@ -50,8 +50,8 @@ class ProjectController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(1100, 755, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(1100, 755, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -102,8 +102,8 @@ class ProjectController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(1100, 755, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(1100, 755, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);

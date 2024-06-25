@@ -164,7 +164,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900"
         rel="stylesheet" />
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+    <!-- CKEditor 5 Builds -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.0/classic/ckeditor.js"></script>
+
 
     {{-- {{asset('backend/')}} --}}
 
@@ -198,7 +200,11 @@
         *===================================-->
         <footer>
             <div class="footer-area">
-                <p>&copy; Copyright 2019. All right reserved.</p>
+                <p>&copy; Copyright {{ \Carbon\Carbon::now()->format('Y') }}. All right reserved.
+                    <a href="https://eldantech.com.ng/" style=" font-weight:800">
+                        EldanTech Technology Solutions
+                    </a>
+                </p>
             </div>
         </footer>
         <!--=================================*
@@ -452,37 +458,128 @@
     </script>
 
 
-    {{-- <script>
-        ClassicEditor
-            .create(document.querySelector('#editor1'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script> --}}
 
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor2'))
-            .catch(error => {
-                console.error(error);
+        $(document).ready(function() {
+            // Loop through each textarea with class .ckeditor-textarea
+            $('.ckeditor-textarea1').each(function() {
+                // Get the ID of the textarea
+                let editorId = $(this).attr('id');
+                // Initialize CKEditor for the current textarea
+                ClassicEditor
+                    .create(document.querySelector('#' + editorId), {
+                        // Customize CKEditor options here
+                        toolbar: {
+                            items: [
+                                'heading',
+                                '|',
+                                'fontFamily',
+                                'fontSize',
+                                '|',
+                                'bold',
+                                'blockquote',
+                                'italic',
+                                'underline',
+                                'strikethrough',
+                                '|',
+                                'alignment',
+                                '|',
+                                'colorBackground',
+                                'colorText',
+                                '|',
+                                'bulletedList',
+                                'numberedList',
+                                '|',
+                                'indent',
+                                'outdent',
+                                '|',
+                                'link',
+                                'unlink',
+                                '|',
+                                'imageUpload',
+                                'insertTable',
+                                'horizontalLine',
+                                '|',
+                                'undo',
+                                'redo'
+                            ]
+                        },
+                        language: 'en', // Set the language
+                        placeholder: 'Write your content here...', // Set a placeholder text
+                        content: {
+                            // Set the allowedContent to true to allow any HTML tags
+                            allowedContent: true,
+                            // Set the block default element to 'div'
+                            blockDefaultElement: 'div'
+                        }
+                        // More configuration options can be added as needed
+                    })
+
+                    .then(editor => {
+
+                        console.log('Editor was initialized', editor);
+                    })
+                    .catch(error => {
+                        console.error("Error initializing CKEditor", error);
+                    })
+
             });
+
+            $('#editor1').ckeditor({
+                height: 100
+            });
+            $('#editor2').ckeditor({
+                height: 200
+            });
+
+        });
     </script>
 
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor3'))
-            .catch(error => {
-                console.error(error);
+        $(document).ready(function() {
+            // Loop through each textarea with class .ckeditor-textarea
+            $('.ckeditor-textarea').each(function() {
+                // Get the ID of the textarea
+                let editorId = $(this).attr('id');
+
+                // Initialize CKEditor for the current textarea
+                ClassicEditor
+                    .create(document.querySelector('#' + editorId))
+                    .catch(error => {
+                        console.error("Error initializing CKEditor", error);
+                    });
             });
+
+        });
     </script>
 
+
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor4'))
-            .catch(error => {
-                console.error(error);
-            });
+        function previewImageOne(input) {
+            // Extract the item ID from the input element's ID
+            var itemId = input.id.replace('imageInput', '');
+            var preview = document.getElementById('imagePreviewOne' + itemId);
+            var file = input.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block'; // Show the image preview
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                // No file selected or invalid file
+                preview.src = '#';
+                preview.style.display = 'none'; // Hide the image preview
+            }
+        }
     </script>
+
+
+
 
     <!-- Main Js -->
     <script src="{{ asset('backend/js/main.js') }}"></script>

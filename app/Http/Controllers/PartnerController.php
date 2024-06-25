@@ -45,8 +45,8 @@ class PartnerController extends Controller
 
                     // Open the image using Intervention Image and apply resizing
                     $resizedImage = Image::make($imagePath . $imageName)
-                        ->resize(332, 100, function ($constraint) {
-                            $constraint->aspectRatio();
+                        ->fit(332, 100, function ($constraint) {
+                            // $constraint->aspectRatio();
                             $constraint->upsize();
                         }) // Adjust the dimensions as needed
                         ->save($imagePath . $imageName);
@@ -87,8 +87,8 @@ class PartnerController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(332, 100, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(332, 100, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);

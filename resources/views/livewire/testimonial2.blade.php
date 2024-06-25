@@ -7,17 +7,17 @@
                     Think About Us?
                 </h2>
             </div>
-            <div class="ft-title-text">
+            {{-- <div class="ft-title-text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
                 lacus vel facilisis.
-            </div>
+            </div> --}}
         </div>
         <div class="ft-testimonial-slider-wrapper-2  swiper-container">
             <div class="ft-testimonial-slider-2">
                 <div class="choose_slider_items ul-li choose_slider">
                     <ul id="mySlider1">
-                        
+
                         @foreach ($testimonials as $item)
                             <li class="current_item">
                                 <div class="ft-testimonial-innerbox-item-2 text-center">

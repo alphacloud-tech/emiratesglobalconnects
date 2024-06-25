@@ -54,8 +54,8 @@
                             data-frame_hover="bgc:#ea1e00;boc:#ea1e00;bor:3px,3px,3px,3px;bos:solid;bow:2px,2px,2px,2px;sp:100;e:power1.inOut;bri:120%;"
                             style="z-index: 12; background-color: #00044b; font-family: 'Poppins';">About Us </a>
                         <a id="slider-27-slide-70-layer-6-{{ $item->id }}" class="rs-layer rev-btn"
-                            href="{{ route('service.page') }}" target="_blank" rel="noopener" data-type="button" data-rsp_ch="on"
-                            data-xy="xo:15px,12px,9px,5px;yo:620px,512px,389px,274px;"
+                            href="{{ route('service.page') }}" target="_blank" rel="noopener" data-type="button"
+                            data-rsp_ch="on" data-xy="xo:15px,12px,9px,5px;yo:620px,512px,389px,274px;"
                             data-text="w:normal;s:18,14,10,14;l:52,42,31,40;fw:500;a:center;"
                             data-dim="w:200px,165px,125px,120px;h:55px,45px,34px,45px;minh:0px,none,none,none;"
                             data-padding="r:40,33,25,15;l:40,33,25,15;"
@@ -185,15 +185,13 @@
             </rs-slides>
         </rs-module>
     </rs-module-wrap>
-    <!-- End of Slider section
-    ============================================= -->
+    <!-- End of Slider section ============================================= -->
 
-    <!-- Start of Booking form section
-    ============================================= -->
+    <!-- Start of Booking form section ============================================= -->
     <section id="ft-booking-form" class="ft-booking-form-section">
         <div class="container">
             <div class="ft-booking-form-content position-relative">
-                <form>
+                <form action="javascript:void(0);">
                     <div class="booking-form-input-wrapper d-flex flex-wrap">
                         <label class="booking-form-input position-relative">
                             <span class="booking-form-icon"><i class="flaticon-face-detection"></i></span>
@@ -209,8 +207,7 @@
             </div>
         </div>
     </section>
-    <!-- End of Booking form section
-    ============================================= -->
+    <!-- End of Booking form section ============================================= -->
 </div>
 
 

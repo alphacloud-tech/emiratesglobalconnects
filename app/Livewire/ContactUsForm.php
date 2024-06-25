@@ -17,13 +17,6 @@ class ContactUsForm extends Component
     public $phone;
     public $website;
 
-    // protected $rules = [
-    //     'fullname' => 'required',
-    //     'email' => 'required|email',
-    //     'message' => 'required',
-    //     'phone' => 'nullable|numeric',
-    //     'website' => 'nullable|url',
-    // ];
     protected $messages = [
         'fullname.required' => 'Name field is required.', // Custom error message for required email
         'email.required' => 'Email field is required.', // Custom error message for required email
@@ -62,7 +55,7 @@ class ContactUsForm extends Component
 
 
         // Send email
-        Mail::to('adesanjo470@gmail.com')->send(new ContactFormSubmitted($validated));
+        Mail::to(env('CONTACTUS'))->send(new ContactFormSubmitted($validated));
 
         // Reset form fields after submission
         $this->reset();

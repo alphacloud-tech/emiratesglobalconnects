@@ -97,7 +97,8 @@
                                                             data-bgColor="#fff" data-width="65" data-height="65"
                                                             data-linecap="round" value="95" />
                                                         <div class="inner-text count-box"><span class="count-text"
-                                                                data-stop="{{ $percent[$i] }}" data-speed="3500"></span>%</div>
+                                                                data-stop="{{ $percent[$i] }}" data-speed="3500"></span>%
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="ft-team-skill-text">
@@ -145,7 +146,7 @@
                             <div class="ft-team-personal-cta-text headline">
                                 <h3>Contact Info:-</h3>
                                 <span>Phone : {{ $setting->phone_1 }}</span>
-                                <span>Email : {{ $setting->email_1 }}</span>
+                                <span style="font-size: 14px">Email : {{ $setting->email_1 }}</span>
                             </div>
                         </div>
                     </div>

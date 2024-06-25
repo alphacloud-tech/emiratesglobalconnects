@@ -57,8 +57,8 @@ class TeamController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(270, 330, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(270, 330, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -117,8 +117,8 @@ class TeamController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(270, 330, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(270, 330, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);

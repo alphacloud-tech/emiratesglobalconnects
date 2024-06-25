@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -28,7 +28,7 @@
         <div class="col-12 mt-4">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Slider</h4>
+                    <h4 class="header-title">Teams</h4>
                     <div class="table-responsive datatable-primary">
                         <table id="dataTable2" class="text-centerss">
                             <thead class="text-capitalize">
@@ -121,29 +121,52 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <p>
+
+                                                        <div class="row">
+                                                            <div class="col-md-9"></div>
+                                                            <div class="col-md-3">
+                                                                <div class="input-group mb-3" style="text-align: right;">
+                                                                    <img id="imagePreviewOne{{ $item->id }}"
+                                                                        src="{{ asset($item->image_url) }}"
+                                                                        alt="Image Preview"
+                                                                        style=" max-width: 100%; display:;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="form-row">
-                                                            <div class="form-group col-md-4">
+                                                            {{--
+
+                                                            <div class="form-group col-md-6">
+
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label>Preview</label>
+
+                                                            </div> --}}
+
+                                                            <div class="form-group col-md-6">
                                                                 <label>Fullname</label>
                                                                 <input type="text" class="form-control" placeholder=""
                                                                     name="name" value="{{ $item->name }}">
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Position</label>
                                                                 <input type="text" class="form-control" placeholder=""
                                                                     name="position" value="{{ $item->position }}">
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Email</label>
                                                                 <input type="email" class="form-control" placeholder=""
                                                                     name="email" value="{{ $item->email }}">
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Phone</label>
                                                                 <input type="text" class="form-control" placeholder=""
                                                                     name="phone" value="{{ $item->phone }}">
                                                             </div>
 
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Facebook Link</label>
                                                                 <input type="text" class="form-control" placeholder=""
                                                                     name="facebook" value="{{ $item->facebook }}">
@@ -153,7 +176,7 @@
                                                                 <input type="text" class="form-control" placeholder=""
                                                                     name="youtube" value="{{ $item->youtube }}">
                                                             </div> --}}
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Instagram Link</label>
                                                                 <input type="text" class="form-control" placeholder=""
                                                                     name="instagram" value="{{ $item->instagram }}">
@@ -190,7 +213,9 @@
                                                                     </div>
                                                                     <div class="custom-file">
                                                                         <input type="file" class="custom-file-input"
-                                                                            name="image_url">
+                                                                            name="image_url"
+                                                                            id="imageInput{{ $item->id }}"
+                                                                            onchange="previewImageOne(this);">
                                                                         <label class="custom-file-label">Choose
                                                                             file</label>
                                                                     </div>
@@ -200,8 +225,7 @@
                                                             <div class="form-group col-md-6">
                                                                 <label>Description</label>
 
-                                                                <input type="hidden" id="unique"
-                                                                    value="editor1{{ $item->id }}">
+
                                                                 <textarea class="ckeditor-textarea" name="description" cols="30" rows="10"
                                                                     id="editor1{{ $item->id }}">{!! $item->description !!}</textarea>
 
@@ -211,9 +235,8 @@
                                                             <div class="form-group col-md-6">
                                                                 <label>Biography</label>
 
-                                                                <input type="hidden" id="unique"
-                                                                    value="editor2{{ $item->id }}">
-                                                                <textarea class="ckeditor-textarea2" name="biography" cols="30" rows="10"
+
+                                                                <textarea class="ckeditor-textarea" name="biography" cols="30" rows="10"
                                                                     id="editor2{{ $item->id }}">{!! $item->biography !!}</textarea>
 
                                                                 {{-- <textarea class="form-control" name="biography" id="editor5" cols="30" rows="10">{{ $item->biography }}</textarea> --}}
@@ -322,32 +345,32 @@
                     <div class="modal-body">
                         <p>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label>Fullname</label>
                                 <input type="text" class="form-control" placeholder="" name="name">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label>Position</label>
                                 <input type="text" class="form-control" placeholder="" name="position">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label>Email</label>
                                 <input type="email" class="form-control" placeholder="" name="email">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label>Phone</label>
                                 <input type="text" class="form-control" placeholder="" name="phone">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label>Facebook Link</label>
                                 <input type="text" class="form-control" placeholder="" name="facebook">
                             </div>
-                            {{-- <div class="form-group col-md-4">
+                            {{-- <div class="form-group col-md-6">
                                 <label>Youtube Link</label>
                                 <input type="text" class="form-control" placeholder="" name="youtube">
                             </div> --}}
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label>Instagram Link</label>
                                 <input type="text" class="form-control" placeholder="" name="instagram">
                             </div>
@@ -387,12 +410,12 @@
 
                             <div class="form-group col-md-6">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" id="editor3" cols="30" rows="10"></textarea>
+                                <textarea class="form-control ckeditor-textarea1" name="description" id="editor3" cols="30" rows="10"></textarea>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label>Biography</label>
-                                <textarea class="form-control" name="biography" id="editor2" cols="30" rows="10"></textarea>
+                                <textarea class="form-control ckeditor-textarea1" name="biography" id="editor2" cols="30" rows="10"></textarea>
                             </div>
 
                         </div>
@@ -489,35 +512,6 @@
 
 
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-
-            $('.edit').click(function() {
-                // Find the ID of the modal associated with the clicked edit button
-                let modalId = $(this).data('target');
-                // alert(modalId);
-
-                // Find the CKEditor textarea within the modal
-                let editorId = $(modalId).find('.ckeditor-textarea').attr('id');
-                let editorId2 = $(modalId).find('.ckeditor-textarea2').attr('id');
-                // Initialize CKEditor for the current textarea
-                ClassicEditor
-                    .create(document.querySelector('#' + editorId))
-                    .catch(error => {
-
-                        console.error("im getting error", error);
-                    });
-
-                ClassicEditor
-                    .create(document.querySelector('#' + editorId2))
-                    .catch(error => {
-
-                        console.error("im getting error", error);
-                    });
-            });
-        });
-    </script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const csrfToken = $('meta[name="csrf-token"]').attr('content');

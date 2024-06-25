@@ -65,8 +65,8 @@ class PropertyController extends Controller
 
             // Resize the image 1900 1000
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(900, 700, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(900, 700, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 })// Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -114,8 +114,8 @@ class PropertyController extends Controller
             if ($file->move($imagePath, $imageName)) {
                 // Resize the image
                 $resizedImage = Image::make($imagePath . $imageName)
-                    ->resize(1900, 1000, function ($constraint) {
-                        $constraint->aspectRatio();
+                    ->fit(1900, 1000, function ($constraint) {
+                        // $constraint->aspectRatio();
                         $constraint->upsize();
                     })
                     ->save($imagePath . $imageName);
@@ -174,8 +174,8 @@ class PropertyController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(1100, 755, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(1100, 755, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);

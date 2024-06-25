@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -42,37 +42,143 @@
                                                 <img src="{{ asset($item->image_url) }}" alt="Portfolio" />
                                                 <figcaption>
                                                     <h3>
-                                                        <a href="javascript:void(0);"
-                                                            class="view_proj">{{ $item->title }}</a>
+                                                        {{ $item->title }}
+                                                        {{-- <a href="javascript:void(0);"
+                                                            class="view_proj">{{ $item->title }}</a> --}}
+
+                                                        <br><br>
                                                         <span>
                                                             <a href="{{ asset($item->image_url) }}"
                                                                 class="fancybox open_img"><i class="fa fa-plus"></i></a>
+
+                                                            <i class="fa fa-pencil mr-1 btn btn-success" data-toggle="modal"
+                                                                data-target="#editModalCenter{{ $item->id }}"
+                                                                title="Edit" data-toggle="tooltip">
+                                                            </i>
+
+                                                            <i class="fa fa-trash mr-1 btn btn-danger" data-toggle="modal"
+                                                                data-target="#deleteModalCenter{{ $item->id }}"
+                                                                title="Delete" data-toggle="tooltip">
+                                                            </i>
+
                                                         </span>
 
-                                                        <span>
-                                                            <form action="{{ route('gallery.destroy', $item->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-rounded btn-danger">
-                                                                    <span class="btn-icon-center">
-                                                                        <i class="fa fa-trash"></i>
-                                                                    </span>
-                                                                </button>
-                                                            </form>
-                                                        </span>
-
-                                                        {{-- <span>
-                                                            <label class="switch">
-                                                                <input type="checkbox" checked id="toggle"
-                                                                    data-active-id="{{ $item->id }}" name="active"
-                                                                    data-active="{{ $item->active ? '1' : '0' }}">
-                                                                <span class="slider round"></span>
-                                                            </label>
-                                                        </span> --}}
                                                     </h3>
                                                 </figcaption>
                                             </figure>
+                                        </div>
+
+                                        {{-- delete modal  --}}
+                                        <div class="modal fade" id="deleteModalCenter{{ $item->id }}">
+                                            <div class="modal-dialog modal-lg2">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Delete Gallery</h5>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal"><span>×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('gallery.destroy', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+
+                                                            <p>Are you sure you want to delete?</p>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Delete</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="modal fade" id="editModalCenter{{ $item->id }}">
+                                            <div class="modal-dialog modal-lg2">
+                                                <div class="modal-content">
+                                                    <form action="{{ route('gallery.update', $item->id) }}" method="POST"
+                                                        enctype="multipart/form-data">
+
+                                                        @csrf
+                                                        @method('PUT')
+
+                                                        <input type="hidden" value="{{ $item->image_url }}"
+                                                            name="old_img">
+
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Edit Gallery</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal"><span>×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+
+                                                            <div class="form-group col-md-12">
+                                                                <label>Service</label>
+                                                                <select class="custom-select" name="service_id">
+                                                                    <option>Choose service</option>
+                                                                    @foreach ($services as $service)
+                                                                        <option value="{{ $service->id }}"
+                                                                            @if ($service->id == $item->service_id) selected @endif>
+                                                                            {{ $service->title }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+
+                                                            <div class="form-group col-md-12">
+                                                                <label>Images ( &nbsp;<i style="color: red">Maximum
+                                                                        upload 8</i>
+                                                                    &nbsp;)</label>
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">Upload</span>
+                                                                    </div>
+                                                                    <div class="custom-file">
+
+                                                                        <input name="image_url" class="custom-file-input"
+                                                                            id="file-upload" type="file" multiple />
+
+                                                                        <label class="custom-file-label">Choose
+                                                                            file</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="form-row">
+                                                                {{-- <div class="form-group col-md-12">
+
+                                                                    <img src="{{ asset($item->image_url) }}"
+                                                                        alt="{{ $item->image_url }}"
+                                                                        style="" width="100px">
+                                                                </div> --}}
+                                                                <div class="form-group col-md-12">
+                                                                    <img src="{{ asset($item->image_url) }}"
+                                                                        alt="{{ $item->image_url }}"
+                                                                        style="width: 100%; height: 400px">
+                                                                </div>
+                                                            </div>
+
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
@@ -101,8 +207,13 @@
                     <div class="modal-body">
                         <p>
                         <div class="form-group col-md-12">
-                            <label>Title</label>
-                            <input type="text" class="form-control" placeholder="" name="title">
+                            <label>Service</label>
+                            <select class="custom-select" name="service_id">
+                                <option>Choose service</option>
+                                @foreach ($services as $item)
+                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -212,12 +323,6 @@
         }
     </style>
 
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
@@ -283,6 +388,29 @@
 
 
 @section('scripts')
+    <script>
+        function previewImageOne(input) {
+            var preview = document.getElementById('imagePreviewOne');
+            alert("preview");
+            var file = input.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block'; // Show the image preview
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                // No file selected or invalid file
+                preview.src = '#';
+                preview.style.display = 'none'; // Hide the image preview
+            }
+        }
+    </script>
+
     <script>
         document.getElementById('file-upload').addEventListener('change', function() {
             const previewContainer = document.querySelector('.image-preview-container');

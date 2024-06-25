@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -117,13 +117,7 @@
                                                                     placeholder="slide video url" name="video_url"
                                                                     value="{{ $item->video_url }}">
                                                             </div> --}}
-                                                            <div class="form-group col-md-12">
-                                                                <label>Slider sub-title</label>
-                                                                <input type="text" id="unique"
-                                                                    value="editor1{{ $item->id }}">
-                                                                <textarea class="ckeditor-textarea" name="description" cols="30" rows="10" id="editor1{{ $item->id }}">{!! $item->description !!}</textarea>
 
-                                                            </div>
                                                             <div class="form-group col-md-12">
                                                                 <label>Slider image</label>
                                                                 <div class="input-group mb-3">
@@ -137,6 +131,13 @@
                                                                             file</label>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <label>Slider sub-title</label>
+                                                                <input type="hidden" id="unique"
+                                                                    value="editor1{{ $item->id }}">
+                                                                <textarea class="ckeditor-textarea" name="description" cols="30" rows="10" id="editor1{{ $item->id }}">{!! $item->description !!}</textarea>
                                                             </div>
                                                         </div>
 
@@ -237,17 +238,7 @@
                                     Please provide a title.
                                 </div>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label>Slider sub-title</label>
-                                <textarea name="description" cols="30" rows="10" id="editor2"></textarea>
 
-                                {{-- <input type="text" class="form-control" placeholder="slide sub title"
-                                    name="description" id="validationCustom04" required> --}}
-
-                                <div class="invalid-feedback">
-                                    Please provide a sub-title.
-                                </div>
-                            </div>
                             {{-- <div class="form-group col-md-12">
                                 <label>Slider video</label>
                                 <input type="text" class="form-control" placeholder="slide video url"
@@ -261,6 +252,14 @@
                                 <input type="file" class="form-control" placeholder="" name="slider_image" required>
                                 <div class="invalid-feedback">
                                     Please choose a image
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>Slider sub-title</label>
+                                <textarea class="ckeditor-textarea1" name="description" cols="30" rows="10" id="editor2"></textarea>
+                                <div class="invalid-feedback">
+                                    Please provide a sub-title.
                                 </div>
                             </div>
                         </div>
@@ -344,40 +343,15 @@
         }
     </style>
 
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- Load CKEditor script -->
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script> --}}
 @endsection
 
 
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-
-            $('.edit').click(function() {
-                // Find the ID of the modal associated with the clicked edit button
-                let modalId = $(this).data('target');
-                // alert(modalId);
-
-                // Find the CKEditor textarea within the modal
-                let editorId = $(modalId).find('.ckeditor-textarea').attr('id');
-
-                // Initialize CKEditor for the current textarea
-                ClassicEditor
-                    .create(document.querySelector('#' + editorId))
-                    .catch(error => {
-
-                        console.error("im getting error", error);
-                    });
-            });
-        });
-    </script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const csrfToken = $('meta[name="csrf-token"]').attr('content');

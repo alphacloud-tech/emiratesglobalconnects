@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -95,7 +95,7 @@
                                     </tr>
 
                                     <div class="modal fade" id="editModalCenter{{ $item->id }}">
-                                        <div class="modal-dialog modal-lg2">
+                                        <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <form action="{{ route('blog.update', $item->id) }}" method="POST"
                                                     enctype="multipart/form-data">
@@ -114,6 +114,21 @@
                                                     <div class="modal-body">
                                                         <p>
                                                         <div class="form-row">
+
+                                                            <div class="form-group col-md-6">
+
+                                                            </div>
+                                                            <div class="form-group col-md-6"
+                                                                style="padding-right: 0; margin-right: 0">
+                                                                <label>Preview</label>
+                                                                <div class="input-group mb-3">
+                                                                    <img id="imagePreviewOne{{ $item->id }}"
+                                                                        src="{{ asset($item->image_url) }}"
+                                                                        alt="Image Preview"
+                                                                        style="max-width: 100%; display: non;">
+                                                                </div>
+                                                            </div>
+
                                                             <div class="form-group col-md-6">
                                                                 <label>Title</label>
                                                                 <input type="text" class="form-control" placeholder=""
@@ -143,20 +158,24 @@
                                                                     </div>
                                                                     <div class="custom-file">
                                                                         <input type="file" class="custom-file-input"
-                                                                            name="image_url">
+                                                                            name="image_url"
+                                                                            id="imageInput{{ $item->id }}"
+                                                                            onchange="previewImageOne(this);">
                                                                         <label class="custom-file-label">Choose
                                                                             file</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                             <div class="form-group col-md-12">
-                                                                <label>Description</label>
-                                                                <textarea class="summernote" name="content" id="editor1">{{ $item->content }}</textarea>
+                                                                <label>Quote Content</label>
+                                                                <textarea class="ckeditor-textarea" name="quote_content" cols="30" rows="10"
+                                                                    id="editor1{{ $item->id }}">{{ $item->quote->quote_content ?? '' }}</textarea>
                                                             </div>
 
                                                             <div class="form-group col-md-12">
-                                                                <label for="quote_content">Quote Content</label>
-                                                                <textarea class="summernote" name="quote_content" id="editor2">{{ $item->quote->quote_content ?? '' }}</textarea>
+                                                                <label>Description</label>
+                                                                <textarea class="ckeditor-textarea" name="content" cols="30" rows="10" id="editor2{{ $item->id }}">{!! $item->content !!}</textarea>
                                                             </div>
                                                         </div>
 
@@ -290,13 +309,13 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label>Description</label>
-                                    <textarea class="form-control" name="content" id="editor3"></textarea>
+                                    <textarea class="form-control ckeditor-textarea1" name="content" id="editor3"></textarea>
                                     {{-- <div class="summernote"></div> --}}
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <label for="quote_content">Quote Content</label>
-                                    <textarea class="form-control" name="quote_content" id="editor4"></textarea>
+                                    <textarea class="form-control ckeditor-textarea1" name="quote_content" id="editor4"></textarea>
                                 </div>
                             </div>
                             </p>
@@ -378,20 +397,35 @@
             }
         </style>
 
-
-        <script>
-            $(document).ready(function() {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-        </script>
-
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @endsection
 
 
     @section('scripts')
-        {{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> --}}
+        <script>
+            function previewImageOne(input) {
+                // Extract the item ID from the input element's ID
+                var itemId = input.id.replace('imageInput', '');
+                var preview = document.getElementById('imagePreviewOne' + itemId);
+                var file = input.files[0];
+
+                if (file) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block'; // Show the image preview
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    // No file selected or invalid file
+                    preview.src = '#';
+                    preview.style.display = 'none'; // Hide the image preview
+                }
+            }
+        </script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {

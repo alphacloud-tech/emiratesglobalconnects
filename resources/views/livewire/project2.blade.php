@@ -1,143 +1,46 @@
- <!-- Start of Project section
-     ============================================= -->
- <section id="ft-portfolio-2" class="ft-portfolio-section-2 position-relative">
-     <div class="ft-section-title-2 headline pera-content text-center">
-         <span class="sub-title">Project</span>
-         <h2>Let's Checkout our All
-             Latest Project
-         </h2>
-     </div>
-     <div class="ft-portfolio-content-2">
-         <div class="ft-portfolio-slider-2">
-             @foreach ($projects as $item)
-                 <div class="ft-portfolio-slider-item">
-                     <div class="ft-portfolio-slider-innerbox position-relative">
-                         <div class="ft-portfolio-img">
-                             <img src="{{ asset($item->image_url) }} " alt="">
-                         </div>
-                         <div class="ft-portfolio-text headline headline pera-content">
-                             <h3>
-                                 <a href="">
-                                     {{ $item->title }}
-                                 </a>
-                             </h3>
-                             {{-- <p>dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo vel
-                                 facilisis.
-                             </p> --}}
-                             <div class="ft-btn-3">
-                                 {{-- <a class="d-flex justify-content-center align-items-center"
-                                     href="project-single.html">Read
-                                     More <i class="flaticon-right-arrow"></i></a> --}}
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             @endforeach
+<section id="pr-sv-case-study" class="pr-sv-case-study-section zoom-gallery" style="padding-top: 10px">
+    <div class="container">
 
-             {{-- <div class="ft-portfolio-slider-item">
-                 <div class="ft-portfolio-slider-innerbox position-relative">
-                     <div class="ft-portfolio-img">
-                         <img src="{{ asset('frontend/assets/img/project/port2.jpg') }} " alt="">
-                     </div>
-                     <div class="ft-portfolio-text headline headline pera-content">
-                         <h3><a href="%60project-single.html">Service & Aftermarket
-                                 Logistics</a></h3>
-                         <p>dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo vel facilisis.
-                         </p>
-                         <div class="ft-btn-3">
-                             <a class="d-flex justify-content-center align-items-center" href="project-single.html">Read
-                                 More <i class="flaticon-right-arrow"></i></a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="ft-portfolio-slider-item">
-                 <div class="ft-portfolio-slider-innerbox position-relative">
-                     <div class="ft-portfolio-img">
-                         <img src="{{ asset('frontend/assets/img/project/port3.jpg') }} " alt="">
-                     </div>
-                     <div class="ft-portfolio-text headline headline pera-content">
-                         <h3><a href="%60project-single.html">Service & Aftermarket
-                                 Logistics</a></h3>
-                         <p>dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo vel facilisis.
-                         </p>
-                         <div class="ft-btn-3">
-                             <a class="d-flex justify-content-center align-items-center" href="project-single.html">Read
-                                 More <i class="flaticon-right-arrow"></i></a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="ft-portfolio-slider-item">
-                 <div class="ft-portfolio-slider-innerbox position-relative">
-                     <div class="ft-portfolio-img">
-                         <img src="{{ asset('frontend/assets/img/project/port4.jpg') }} " alt="">
-                     </div>
-                     <div class="ft-portfolio-text headline headline pera-content">
-                         <h3><a href="%60project-single.html">Service & Aftermarket
-                                 Logistics</a></h3>
-                         <p>dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo vel facilisis.
-                         </p>
-                         <div class="ft-btn-3">
-                             <a class="d-flex justify-content-center align-items-center" href="project-single.html">Read
-                                 More <i class="flaticon-right-arrow"></i></a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="ft-portfolio-slider-item">
-                 <div class="ft-portfolio-slider-innerbox position-relative">
-                     <div class="ft-portfolio-img">
-                         <img src="{{ asset('frontend/assets/img/project/port1.jpg') }} " alt="">
-                     </div>
-                     <div class="ft-portfolio-text headline headline pera-content">
-                         <h3><a href="%60project-single.html">Service & Aftermarket
-                                 Logistics</a></h3>
-                         <p>dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo vel facilisis.
-                         </p>
-                         <div class="ft-btn-3">
-                             <a class="d-flex justify-content-center align-items-center" href="project-single.html">Read
-                                 More <i class="flaticon-right-arrow"></i></a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="ft-portfolio-slider-item">
-                 <div class="ft-portfolio-slider-innerbox position-relative">
-                     <div class="ft-portfolio-img">
-                         <img src="{{ asset('frontend/assets/img/project/port2.jpg') }} " alt="">
-                     </div>
-                     <div class="ft-portfolio-text headline headline pera-content">
-                         <h3><a href="%60project-single.html">Service & Aftermarket
-                                 Logistics</a></h3>
-                         <p>dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo vel facilisis.
-                         </p>
-                         <div class="ft-btn-3">
-                             <a class="d-flex justify-content-center align-items-center" href="project-single.html">Read
-                                 More <i class="flaticon-right-arrow"></i></a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="ft-portfolio-slider-item">
-                 <div class="ft-portfolio-slider-innerbox position-relative">
-                     <div class="ft-portfolio-img">
-                         <img src="{{ asset('frontend/assets/img/project/port3.jpg') }} " alt="">
-                     </div>
-                     <div class="ft-portfolio-text headline headline pera-content">
-                         <h3><a href="%60project-single.html">Service & Aftermarket
-                                 Logistics</a></h3>
-                         <p>dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo vel facilisis.
-                         </p>
-                         <div class="ft-btn-3">
-                             <a class="d-flex justify-content-center align-items-center" href="project-single.html">Read
-                                 More <i class="flaticon-right-arrow"></i></a>
-                         </div>
-                     </div>
-                 </div>
-             </div> --}}
-         </div>
-     </div>
- </section>
- <!-- End of Project section
-     ============================================= -->
+        @if ($check)
+            <div class="pr-sx-secion-title headline pera-content  wow fadeInUp" data-wow-delay="00ms"
+                data-wow-duration="1500ms">
+                <span class="pr-sx-title-tag position-relative">Our Project</span>
+                <h2>Some Of Our <span>Project</span>
+                    Gallery</h2>
+            </div>
+            <div class="pr-sv-case-study-content">
+                <div class="pr-sv-case-study-filter-btn ul-li">
+                    <ul id="filters" class="nav-gallery">
+                        <li class="filtr-button filtr-active" data-filter="all">All Project</li>
+
+                        {{-- @foreach ($services as $service)
+                        <li class="filtr-button" data-filter="{{ $service->id }}">{{ $service->title }}</li>
+                    @endforeach --}}
+
+                    </ul>
+                </div>
+                <div class="pr-sv-case-study-item-wrapper filtr-container row">
+                    @foreach ($projects as $item)
+                        @if ($item->service_id == $service->id)
+                            <div class="col-lg-4 col-sm-6 filtr-item" data-category="{{ $item->service_id }}"
+                                data-sort="Busy streets">
+                                <div class="pr-sv-case-study-item">
+                                    <a href="{{ asset($item->image_url) }}" data-fancybox="gallery"
+                                        data-src="{{ asset($item->image_url) }}" class="gallery-item">
+                                        <div class="pr-sv-case-study-img position-relative">
+                                            <img src="{{ asset($item->image_url) }}" alt="">
+                                        </div>
+                                        <div class="gallery-overlay2">
+                                            <i class="fal fa-link"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        @endif
+    </div>
+</section>
+

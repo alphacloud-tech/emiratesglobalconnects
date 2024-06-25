@@ -18,8 +18,10 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SkillPercentController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SpecialController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\WhyChooseUsController;
 use App\Livewire\AboutPage;
 use App\Livewire\BlogDetailPage;
 use App\Livewire\BlogListByCatPage;
@@ -40,7 +42,11 @@ use App\Livewire\TeamPage;
 use App\Livewire\VideoPage;
 use App\Livewire\WebsiteDevelopmentPage;
 use App\Models\BlogPost;
+use App\Models\Complain;
+use App\Models\Gallery as ModelsGallery;
+use App\Models\Service;
 use App\Models\SkillPercent;
+use App\Models\Team;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -155,6 +161,7 @@ Route::resource('slider', SliderController::class);
 Route::post('/slider-activate/{slider}', [SliderController::class, 'activation']);
 
 
+
 Route::resource('partner', PartnerController::class);
 Route::post('/partner-activate/{partner}', [PartnerController::class, 'activation']);
 
@@ -168,6 +175,8 @@ Route::post('/testimonial-activate/{testimonial}', [TestimonialController::class
 
 Route::resource('service', ServiceController::class);
 Route::post('/service-activate/{service}', [ServiceController::class, 'activation']);
+
+Route::post('/service/destroy2/{id}', [ServiceController::class, 'destroy2'])->name('service.destroy2');
 
 Route::resource('blog', BlogPostController::class);
 Route::post('/blog-activate/{blog}', [BlogPostController::class, 'activation']);
@@ -211,6 +220,13 @@ Route::post('/property-activate/{property}',  [PropertyController::class, 'activ
 Route::resource('feature', PropertyFeatureController::class);
 // Route::post('/feature-activate/{feature}',  [PropertyFeatureController::class, 'activation']);
 
+
+Route::resource('why-choose-us', WhyChooseUsController::class);
+Route::post('/why-choose-us-activate/{why_choose_us}',  [WhyChooseUsController::class, 'activation']);
+
+Route::resource('special', SpecialController::class);
+Route::post('/special-activate/{special}',  [SpecialController::class, 'activation']);
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::middleware([
@@ -220,10 +236,11 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
 
-        $blogs = BlogPost::latest() // Retrieve the latest blog
-            ->with('category', 'quote') // Eager load the related category
-            ->get();
+        $blogs = BlogPost::latest()->with('category', 'quote')->get();
+        $services = Service::latest()->get();
+        $messages = Complain::latest()->get();
+        $teams = Team::latest()->get();
 
-        return view('dashboard', compact('blogs'));
+        return view('dashboard', compact('blogs', 'services', 'messages', 'teams'));
     })->name('dashboard');
 });

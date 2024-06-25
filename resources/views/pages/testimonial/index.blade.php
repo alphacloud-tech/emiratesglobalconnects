@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -42,7 +42,7 @@
                                         <td>{{ $item->position }}</td>
 
                                         <td>
-                                            {!! \Illuminate\Support\Str::limit($item->quote, 50) !!}
+                                            {!! \Illuminate\Support\Str::limit($item->quote, 100) !!}
                                             <i class="fa fa-eye mr-1 btn btn-warning" data-toggle="modal"
                                                 data-target="#showModalCenterdescription{{ $item->id }}" class="edit"
                                                 title="Edit" data-toggle="tooltip">
@@ -90,6 +90,21 @@
                                                         <p>
                                                         <div class="form-row">
 
+
+                                                            <div class="form-group col-md-6">
+
+                                                            </div>
+                                                            <div class="form-group col-md-6"
+                                                                style="padding-right: 0; margin-right: 0">
+                                                                <label>Preview</label>
+                                                                <div class="input-group mb-3">
+                                                                    <img id="imagePreviewOne{{ $item->id }}"
+                                                                        src="{{ asset($item->image_url) }}"
+                                                                        alt="Image Preview"
+                                                                        style="max-width: 100%; display: non;">
+                                                                </div>
+                                                            </div>
+
                                                             <div class="form-group col-md-6">
                                                                 <label>Name</label>
                                                                 <input type="text" class="form-control" placeholder=""
@@ -102,7 +117,7 @@
                                                                     name="position" value="{{ $item->position }}">
                                                             </div>
 
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-12">
                                                                 <label>Image <i style="color: red">(300 by
                                                                         300)</i></label>
                                                                 <div class="input-group mb-3">
@@ -111,28 +126,19 @@
                                                                     </div>
                                                                     <div class="custom-file">
                                                                         <input type="file" class="custom-file-input"
-                                                                            name="image_url" id="imageInput"
+                                                                            name="image_url"
+                                                                            id="imageInput{{ $item->id }}"
                                                                             onchange="previewImageOne(this);">
                                                                         <label class="custom-file-label">Choose
                                                                             file</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label>Preview</label>
-                                                                <div class="input-group mb-3">
 
-                                                                    <img id="imagePreviewOne"
-                                                                        src="{{ asset($item->image_url) }}"
-                                                                        alt="Image Preview"
-                                                                        style="max-width: 100%; display: non;">
-                                                                </div>
-                                                            </div>
 
                                                             <div class="form-group col-md-12">
                                                                 <label>Quote</label>
-                                                                <textarea id="editor1" name="quote">{{ $item->quote }}</textarea>
-                                                                {{-- <div class="summernote"></div> --}}
+                                                                <textarea id="editor1{{ $item->id }}" name="quote" class="form-control ckeditor-textarea">{{ $item->quote }}</textarea>
                                                             </div>
 
                                                         </div>
@@ -238,6 +244,20 @@
                     <div class="modal-body">
                         <p>
                         <div class="form-row">
+
+                            <div class="form-group col-md-6">
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>Preview</label>
+                                <div class="input-group mb-3">
+                                    <img id="imagePreviewOne" src="{{ asset('frontend/default.png') }}"
+                                        alt="Image Preview" style="max-width: 100%; display: non;">
+                                </div>
+                            </div>
+
+
                             <div class="form-group col-md-6">
                                 <label>Name</label>
                                 <input type="text" class="form-control" placeholder="" name="name"
@@ -250,7 +270,7 @@
                                     value="">
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>Image <i style="color: red">(300 by 300)</i></label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -265,18 +285,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <label>Preview</label>
-                                <div class="input-group mb-3">
-                                    <img id="imagePreviewOne" src="" alt="Image Preview"
-                                        style="max-width: 100%; display: none;">
-                                </div>
-                            </div>
-
-
                             <div class="form-group col-md-12">
                                 <label>Quote</label>
-                                <textarea id="editor2" name="quote"></textarea>
+                                <textarea id="editor2" name="quote" class="ckeditor-textarea1"></textarea>
                                 {{-- <div class="summernote"></div> --}}
                             </div>
 
@@ -364,134 +375,12 @@
         }
     </style>
 
-
-    <style>
-        table.table tr th,
-        table.table tr td {
-            border-color: #e9e9e9;
-        }
-
-        table.table-striped tbody tr:nth-of-type(odd) {
-            background-color: #fcfcfc;
-        }
-
-        table.table-striped.table-hover tbody tr:hover {
-            background: #f5f5f5;
-        }
-
-        table.table th i {
-            font-size: 13px;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        table.table td:last-child {
-            width: 130px;
-        }
-
-        table.table td a {
-            color: #a0a5b1;
-            display: inline-block;
-            margin: 0 5px;
-        }
-
-        table.table td a.view {
-            color: #03A9F4;
-        }
-
-        table.table td a.edit {
-            color: #FFC107;
-        }
-
-        table.table td a.delete {
-            color: #E34724;
-        }
-
-        table.table td i {
-            font-size: 19px;
-        }
-
-        .pagination {
-            float: right;
-            margin: 0 0 5px;
-        }
-
-        .pagination li a {
-            border: none;
-            font-size: 95%;
-            width: 30px;
-            height: 30px;
-            color: #999;
-            margin: 0 2px;
-            line-height: 30px;
-            border-radius: 30px !important;
-            text-align: center;
-            padding: 0;
-        }
-
-        .pagination li a:hover {
-            color: #666;
-        }
-
-        .pagination li.active a {
-            background: #03A9F4;
-        }
-
-        .pagination li.active a:hover {
-            background: #0397d6;
-        }
-
-        .pagination li.disabled i {
-            color: #ccc;
-        }
-
-        .pagination li i {
-            font-size: 16px;
-            padding-top: 6px
-        }
-
-        .hint-text {
-            float: left;
-            margin-top: 6px;
-            font-size: 95%;
-        }
-    </style>
-
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @endsection
 
 
 @section('scripts')
-    <script>
-        function previewImageOne(input) {
-            var preview = document.getElementById('imagePreviewOne');
-            var file = input.files[0];
-
-            if (file) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block'; // Show the image preview
-                };
-
-                reader.readAsDataURL(file);
-            } else {
-                // No file selected or invalid file
-                preview.src = '#';
-                preview.style.display = 'none'; // Hide the image preview
-            }
-        }
-    </script>
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const csrfToken = $('meta[name="csrf-token"]').attr('content');

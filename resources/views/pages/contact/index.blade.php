@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+{{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active

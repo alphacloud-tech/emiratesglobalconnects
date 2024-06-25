@@ -78,8 +78,8 @@ class SettingController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(250, 70, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(250, 70, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -122,8 +122,8 @@ class SettingController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(60, 60, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(60, 60, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);

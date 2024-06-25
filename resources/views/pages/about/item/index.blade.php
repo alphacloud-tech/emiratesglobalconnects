@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -8,306 +8,218 @@
 
 
 @section('content')
-    <div class="content-body">
-        <div class="container-fluid">
-            <div class="row page-titles mx-0">
-                <div class="col-sm-6 p-md-0">
-                    <div class="welcome-text">
-                        <h4>Hi, welcome back!</h4>
-                        <p class="mb-0">Cleverbiz - Real Estate</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">About Us</a></li>
-                        <li class="breadcrumb-item active">
+    @if (session('success'))
+        <div class="alert alert-primary alert-dismissible alert-alt solid fade show">
+            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                <span>
+                    <i class="fa fa-close"></i>
+                </span>
+            </button>
+            <strong>Success!</strong>
 
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModalCenter">Add
-                                about us item</a>
-                        </li>
+            {{ session('success') }}
+        </div>
+    @endif
 
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
+    @include('pages.common.top')
 
+    <div class="row">
+        <!-- Primary table -->
+        <div class="col-12 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">About Us Item</h4>
+                    <div class="table-responsive datatable-primary">
+                        <table id="dataTable2" class="text-center33">
+                            <thead class="text-capitalize">
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Title</th>
+                                    <th>Percent</th>
+                                    <th>Color</th>
+                                    <th>Activate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $i = 1;
+                                @endphp
+                                @foreach ($aboutItems as $item)
+                                    <tr>
+                                        <th>{{ $i++ }}</th>
+                                        <td>{{ $item->bar_title }} </td>
+                                        <td>{{ $item->bar_percent }} </td>
+                                        <td>{{ $item->bar_bg_color }} </td>
 
-            @if (session('success'))
-                <div class="alert alert-primary alert-dismissible alert-alt solid fade show">
-                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
-                                class="mdi mdi-close"></i></span>
-                    </button>
-                    <strong>Success!</strong>
-
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Service lists</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-responsive-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>S/N</th>
-                                            <th>Title</th>
-                                            <th>Percent</th>
-                                            <th>Color</th>
-                                            <th>Activate</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="getData">
-                                        @php
-                                            $i = 1;
-                                        @endphp
-                                        @foreach ($aboutItems as $item)
-                                            <tr>
-                                                <th>{{ $i++ }}</th>
-                                                <td>{{ $item->bar_title }} </td>
-                                                <td>{{ $item->bar_percent }} </td>
-                                                <td>{{ $item->bar_bg_color }} </td>
-
-                                                <td>
-                                                    <label class="switch">
-                                                        <input type="checkbox" checked id="toggle"
-                                                            data-active-id="{{ $item->id }}" name="active"
-                                                            data-active="{{ $item->active ? '1' : '0' }}">
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                </td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" checked id="toggle"
+                                                    data-active-id="{{ $item->id }}" name="active"
+                                                    data-active="{{ $item->active ? '1' : '0' }}">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
 
 
-                                                <td>
+                                        <td>
 
-                                                    <a type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#editModalCenter{{ $item->id }}" class="edit"
-                                                        title="Edit" data-toggle="tooltip">
-                                                        <i class="fa fa-pencil" style="color: #fff; font-weight:700"></i>
-                                                    </a>
-                                                    {{-- <a type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#editModalCenter" class="edit" title="Edit"
-                                                        data-toggle="tooltip">
-                                                        <i id="{{ $item->id }}" class="fa fa-pencil edit-action"
-                                                            style="color: #fff; font-weight:700"></i>
-                                                    </a> --}}
+                                            <a type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#editModalCenter{{ $item->id }}" class="edit"
+                                                title="Edit" data-toggle="tooltip">
+                                                <i class="fa fa-pencil" style="color: #fff; font-weight:700"></i>
+                                            </a>
 
-                                                    <a type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#deleteModalCenter{{ $item->id }}" class="delete"
-                                                        title="Delete" data-toggle="tooltip">
-                                                        <i class="fa fa-trash" style="color: #fff; font-weight:700"></i>
-                                                    </a>
-                                                </td>
+                                            <a type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#deleteModalCenter{{ $item->id }}" class="delete"
+                                                title="Delete" data-toggle="tooltip">
+                                                <i class="fa fa-trash" style="color: #fff; font-weight:700"></i>
+                                            </a>
+                                        </td>
 
 
-                                            </tr>
+                                    </tr>
 
-                                            <!-- Edit Modal -->
-                                            <div class="modal fade" id="editModalCenter{{ $item->id }}"
-                                                aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <form action="{{ route('about-us-item.update', $item->id) }}"
-                                                            method="POST" enctype="multipart/form-data">
+                                    <!-- Edit Modal -->
+                                    <div class="modal fade" id="editModalCenter{{ $item->id }}" aria-hidden="true"
+                                        style="display: none;">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <form action="{{ route('about-us-item.update', $item->id) }}"
+                                                    method="POST" enctype="multipart/form-data">
 
-                                                            @csrf
-                                                            @method('PUT')
+                                                    @csrf
+                                                    @method('PUT')
 
-                                                            <input type="hidden" value="{{ $item->id }}"
-                                                                name="id">
+                                                    <input type="hidden" value="{{ $item->id }}" name="id">
 
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Edit About Us Item</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal"><span>×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>
-                                                                <div class="form-row">
-
-                                                                    <div class="form-group col-md-12">
-                                                                        <label>Title</label>
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="" name="bar_title"
-                                                                            value="{{ $item->bar_title }}">
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-12">
-                                                                        <label>Percent</label>
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="" name="bar_percent"
-                                                                            value="{{ $item->bar_percent }}">
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-12">
-                                                                        <label>Color</label>
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="" name="bar_bg_color"
-                                                                            value="{{ $item->bar_bg_color }}">
-                                                                    </div>
-                                                                </div>
-
-                                                                </p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Save</button>
-                                                            </div>
-                                                        </form>
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Edit About Us Item</h5>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal"><span>×</span>
+                                                        </button>
                                                     </div>
+                                                    <div class="modal-body">
+                                                        <p>
+                                                        <div class="form-row">
+
+                                                            <div class="form-group col-md-12">
+                                                                <label>Title</label>
+                                                                <input type="text" class="form-control" placeholder=""
+                                                                    name="bar_title" value="{{ $item->bar_title }}">
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <label>Percent</label>
+                                                                <input type="text" class="form-control" placeholder=""
+                                                                    name="bar_percent" value="{{ $item->bar_percent }}">
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <label>Color</label>
+                                                                <input type="text" class="form-control" placeholder=""
+                                                                    name="bar_bg_color" value="{{ $item->bar_bg_color }}">
+                                                            </div>
+                                                        </div>
+
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    {{-- delete modal  --}}
+                                    <div class="modal fade" id="deleteModalCenter{{ $item->id }}" aria-hidden="true"
+                                        style="display: none;">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Delete About Us Item</h5>
+                                                    <button type="button" class="close"
+                                                        data-dismiss="modal"><span>×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('about-us-item.destroy', $item->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <p>Are you sure you want to delete?</p>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Primary table -->
+    </div>
 
-                                            {{-- <div class="modal fade" id="editModalCenter" aria-hidden="true"
-                                                style="display: none;">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
 
-                                                        <form id="update-form">
 
-                                                            @csrf
+    <div class="modal fade" id="exampleModalCenter">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Edit About Us Item</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal"><span>×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>
-                                                                <div class="form-row">
+                <form id="create-form">
+                    @csrf
 
-                                                                    <div class="form-group col-md-12">
-                                                                        <label>Title</label>
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="" name="bar_title"
-                                                                            value="{{ $item->bar_title }}">
-                                                                    </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create About Us Item</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                        <div class="form-row">
 
-                                                                    <div class="form-group col-md-12">
-                                                                        <label>Percent</label>
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="" name="bar_percent"
-                                                                            value="{{ $item->bar_percent }}">
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-12">
-                                                                        <label>Color</label>
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="" name="bar_bg_color"
-                                                                            value="{{ $item->bar_bg_color }}">
-                                                                    </div>
-                                                                </div>
-
-                                                                </p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary"
-                                                                    id="submitEdit">Save</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
-
-                                            {{-- delete modal  --}}
-                                            <div class="modal fade" id="deleteModalCenter{{ $item->id }}"
-                                                aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Delete About Us Item</h5>
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal"><span>×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{ route('about-us-item.destroy', $item->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-
-                                                                <p>Are you sure you want to delete?</p>
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-danger">Delete</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                            <div class="form-group col-md-12">
+                                <label>Title</label>
+                                <input id="bar_title" type="text" class="form-control" placeholder=""
+                                    name="bar_title" value="">
                             </div>
+
+                            <div class="form-group col-md-12">
+                                <label>Percent</label>
+                                <input id="bar_percent" type="text" class="form-control" placeholder=""
+                                    name="bar_percent" value="">
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>Color</label>
+                                <input id="bar_bg_color" type="text" class="form-control" placeholder=""
+                                    name="bar_bg_color" value="">
+                            </div>
+
                         </div>
+                        </p>
                     </div>
-                </div>
-            </div>
-
-            <!-- Add Modal -->
-            <div class="modal fade" id="exampleModalCenter" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        {{-- <form action="{{ route('about-us-item.store') }}" method="POST" enctype="multipart/form-data"> --}}
-                        <form id="create-form">
-                            @csrf
-
-                            <div class="modal-header">
-                                <h5 class="modal-title">Create About Us Item</h5>
-                                <button type="button" class="close" data-dismiss="modal"><span>×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                <div class="form-row">
-
-                                    <div class="form-group col-md-12">
-                                        <label>Title</label>
-                                        <input id="bar_title" type="text" class="form-control" placeholder=""
-                                            name="bar_title" value="">
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label>Percent</label>
-                                        <input id="bar_percent" type="text" class="form-control" placeholder=""
-                                            name="bar_percent" value="">
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label>Color</label>
-                                        <input id="bar_bg_color" type="text" class="form-control" placeholder=""
-                                            name="bar_bg_color" value="">
-                                    </div>
-
-                                </div>
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                </div>
+                </form>
             </div>
-
-
-
         </div>
     </div>
 @endsection

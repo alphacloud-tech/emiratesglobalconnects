@@ -74,9 +74,10 @@
                                         <button>Contact Now</button>
                                     </form> --}}
 
-                                    <livewire:contact-us-form />
+                                    <livewire:contact-us-form2 />
                                 </div>
                             </div>
+
                             <div class="ft-service-sidebar-widget headline ul-li-block">
                                 <div class="service-download-widget">
                                     <h3 class="widget-title">Download Now</h3>
@@ -90,10 +91,9 @@
                                     </ul>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-
-
 
                     <div class="col-lg-8">
                         <div class="ft-service-details-content-wrapper headline pera-content">
@@ -120,7 +120,7 @@
                                 <h3>Overview</h3>
                                 <p> {!! $service->description !!}</p>
 
-                                <div class="ft-service-details-counter-wrapper">
+                                {{-- <div class="ft-service-details-counter-wrapper">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div
@@ -149,10 +149,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <h3>How It Works</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                {{-- <h3>How It Works</h3> --}}
+                                {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                     ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
                                     viverra maecenas accumsan lacus vel facilisis.</p>
                                 <div class="ft-video-content position-relative">
@@ -169,16 +169,148 @@
                                             </a>
                                         </div>
                                     </div>
+                                </div> --}}
+
+                                {{-- <livewire:project id="{{ $service->id }}" /> --}}
+
+
+
+                            </div>
+
+                            {{-- <div class="ft-featured-content">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6 col-md-6 wow fadeInUp mb-4" data-wow-delay="200ms"
+                                        data-wow-duration="1500ms">
+                                        <div class="ft-featured-innerbox position-relative">
+                                            <div class="ft-featured-icon">
+                                                <i class="fas fa-plane"></i>
+                                            </div>
+                                            <div class="ft-featured-text headline pera-content">
+                                                <h3><a>Flight Booking</a></h3>
+                                                <p>From economy to first class, domestic to international, we offer a
+                                                    wide range of
+                                                    flight options to suit your preferences and budget. Our experienced
+                                                    travel
+                                                    consultants will assist you in finding the best deals and routes for
+                                                    your itinerary.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 wow fadeInUp  mb-4" data-wow-delay="400ms"
+                                        data-wow-duration="1500ms">
+                                        <div class="ft-featured-innerbox position-relative">
+                                            <div class="ft-featured-icon">
+                                                <i class="fas fa-bed"></i>
+                                            </div>
+                                            <div class="ft-featured-text headline pera-content">
+                                                <h3><a>Hotel Reservations</a></h3>
+                                                <p>Finding the perfect accommodation is essential for a comfortable
+                                                    trip. Let us handle
+                                                    your hotel reservations, ensuring that you stay in the finest hotels
+                                                    with the
+                                                    amenities you desire.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 wow fadeInUp  mb-4" data-wow-delay="600ms"
+                                        data-wow-duration="1500ms">
+                                        <div class="ft-featured-innerbox position-relative">
+                                            <div class="ft-featured-icon">
+                                                <i class="fas fa-car"></i>
+                                            </div>
+                                            <div class="ft-featured-text headline pera-content">
+                                                <h3><a>Transportation</a></h3>
+                                                <p>Whether you need airport transfers, car rentals, or chauffeur
+                                                    services, we've got you
+                                                    covered. Our transportation services are reliable, convenient, and
+                                                    designed to make
+                                                    getting around easy and stress-free.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 wow fadeInUp  mb-4" data-wow-delay="600ms"
+                                        data-wow-duration="1500ms">
+                                        <div class="ft-featured-innerbox position-relative">
+                                            <div class="ft-featured-icon">
+                                                <i class="fas fa-car"></i>
+                                            </div>
+                                            <div class="ft-featured-text headline pera-content">
+                                                <h3><a>Transportation</a></h3>
+                                                <p>Whether you need airport transfers, car rentals, or chauffeur
+                                                    services, we've got you
+                                                    covered. Our transportation services are reliable, convenient, and
+                                                    designed to make
+                                                    getting around easy and stress-free.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <section id="ft-featured" class="ft-featured-section" style="margin-top: 0%">
+            <div class="container">
+                <div class="ft-featured-content">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+                            <div class="ft-featured-innerbox position-relative">
+                                <div class="ft-featured-icon">
+                                    <i class="fas fa-plane"></i>
+                                </div>
+                                <div class="ft-featured-text headline pera-content">
+                                    <h3><a>Flight Booking</a></h3>
+                                    <p>From economy to first class, domestic to international, we offer a wide range of
+                                        flight options to suit your preferences and budget. Our experienced travel
+                                        consultants will assist you in finding the best deals and routes for your itinerary.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
+                            <div class="ft-featured-innerbox position-relative">
+                                <div class="ft-featured-icon">
+                                    <i class="fas fa-bed"></i>
+                                </div>
+                                <div class="ft-featured-text headline pera-content">
+                                    <h3><a>Hotel Reservations</a></h3>
+                                    <p>Finding the perfect accommodation is essential for a comfortable trip. Let us handle
+                                        your hotel reservations, ensuring that you stay in the finest hotels with the
+                                        amenities you desire.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
+                            <div class="ft-featured-innerbox position-relative">
+                                <div class="ft-featured-icon">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <div class="ft-featured-text headline pera-content">
+                                    <h3><a>Transportation</a></h3>
+                                    <p>Whether you need airport transfers, car rentals, or chauffeur services, we've got you
+                                        covered. Our transportation services are reliable, convenient, and designed to make
+                                        getting around easy and stress-free.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section> --}}
     </section>
     <!-- End of Service details section ============================================= -->
+
+    <!-- Start of gallery section ============================================= -->
+    {{-- <livewire:gallery /> --}}
+    <livewire:project2 id="{{ $service->id }}" />
+    <!-- End of gallery section ============================================= -->
 @endsection
+
+
 
 
 @section('styles')

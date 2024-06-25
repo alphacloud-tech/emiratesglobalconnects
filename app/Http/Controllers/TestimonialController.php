@@ -44,8 +44,8 @@ class TestimonialController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(150, 150, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(150, 150, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -89,8 +89,8 @@ class TestimonialController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(150, 150, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(150, 150, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 })// Adjust the dimensions as needed
                 ->save($imagePath . $imageName);

@@ -18,6 +18,7 @@ class BlogDetailPage extends Component
     public  $galleries2;
     public  $previousPost;
     public  $nextPost;
+    public  $services;
     // Add other data properties here...
 
     public function mount($title)
@@ -54,6 +55,11 @@ class BlogDetailPage extends Component
             ->get();
 
 
+        $this->services = DB::table('services')
+            ->where('active', 1)
+            ->orderBy('title', 'DESC')
+            ->get();
+
         $this->galleries2 = Gallery::latest() // Retrieve the latest gallery
             ->where('active', 1)
             ->take(9)
@@ -71,6 +77,7 @@ class BlogDetailPage extends Component
         $data = [
             'setting' => $this->setting,
             'blogPost' => $this->blogPost,
+            'services' => $this->services,
             'blogs' => $this->blogs,
             'categories' => $this->categories,
             'galleries2' => $this->galleries2,

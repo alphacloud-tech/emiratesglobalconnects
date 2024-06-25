@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -49,7 +49,7 @@
                                         <th>{{ $i++ }}</th>
                                         <th>{{ $item->title }}</th>
                                         <td>
-                                            {!! \Illuminate\Support\Str::limit($item->description, 100) !!}
+                                            {!! \Illuminate\Support\Str::limit($item->description, 50) !!}
                                             <i class="fa fa-eye mr-1 btn btn-warning" data-toggle="modal"
                                                 data-target="#showModalCenterdescription{{ $item->id }}" class="edit"
                                                 title="Edit" data-toggle="tooltip">
@@ -78,7 +78,7 @@
                                     </tr>
 
                                     <div class="modal fade" id="editModalCenter{{ $item->id }}">
-                                        <div class="modal-dialog modal-lg">
+                                        <div class="modal-dialog modal-lg2">
                                             <div class="modal-content">
                                                 <form action="{{ route('admin-faq.update', $item->id) }}" method="POST"
                                                     enctype="multipart/form-data">
@@ -102,14 +102,13 @@
 
                                                         <div class="form-group col-md-12">
                                                             <label>Description</label>
-                                                            <textarea class="summernote" name="description" id="editor1">{{ $item->description }}</textarea>
-                                                            {{-- <div class="summernote"></div> --}}
+                                                            <textarea class="ckeditor-textarea" name="content" cols="30" rows="10" id="editor2{{ $item->id }}">{!! $item->description !!}</textarea>
                                                         </div>
 
                                                         </p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-danger"
                                                             data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Save</button>
                                                     </div>
@@ -215,7 +214,7 @@
 
                         <div class="form-group col-md-12">
                             <label>Description</label>
-                            <textarea class="" name="description" id="editor2"></textarea>
+                            <textarea class="ckeditor-textarea1" name="description" id="editor2"></textarea>
                             {{-- <div class="summernote"></div> --}}
                         </div>
 

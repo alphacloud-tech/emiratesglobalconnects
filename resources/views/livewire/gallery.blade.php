@@ -49,6 +49,17 @@
     <div class="ft-portfolio-content-2">
         <div class="ft-portfolio-slider-2">
             @foreach ($galleries as $item)
+                @php
+
+                    $service = DB::table('services')
+                        ->where('id', $item->service_id)
+                        ->first();
+
+                    $title = strtolower(str_replace(' ', '-', $item->title));
+
+                @endphp
+
+
                 <div class="ft-portfolio-slider-item">
                     <div class="ft-portfolio-slider-innerbox position-relative">
                         <div class="ft-portfolio-img">
@@ -60,14 +71,14 @@
                                     {{ $item->title }}
                                 </a>
                             </h3>
-                            {{-- <p>dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo vel
-                                facilisis.
+                            <p>
+                                {!! \Illuminate\Support\Str::limit($service->description, 200) !!}
                             </p>
                             <div class="ft-btn-3">
                                 <a class="d-flex justify-content-center align-items-center"
-                                    href="project-single.html">Read
+                                    href="{{ route('service.single', $title) }}">Read
                                     More <i class="flaticon-right-arrow"></i></a>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>

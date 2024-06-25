@@ -1,7 +1,7 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
-            <a href="{{ route('dashboard') }}"><img src="{{ asset('backend/images/logo.png') }} " alt="logo" /></a>
+            <a href="{{ route('dashboard') }}"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
         </div>
     </div>
 
@@ -44,6 +44,26 @@
 
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="fa fa-step-forward"></i>
+                            <span>Why Choose Us</span>
+                        </a>
+                        <ul class="collapse">
+                            <li><a href="{{ route('why-choose-us.index') }}">Why Choose Us</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="fa fa-step-forward"></i>
+                            <span>What Make Us Special</span>
+                        </a>
+                        <ul class="collapse">
+                            <li><a href="{{ route('special.index') }}">What Make Us Special</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true">
                             <i class="fa fa-users"></i>
                             <span>Team</span>
                         </a>
@@ -63,17 +83,6 @@
                             <li><a href="{{ route('service.index') }}">Service List</a></li>
                         </ul>
                     </li>
-
-                    {{-- <li>
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="fa fa-book"></i>
-                            <span>Partners</span>
-                        </a>
-                        <ul class="collapse">
-                            <li><a href="{{ route('partner.index') }}">Partner List</a></li>
-                            <li><a href="{{ route('technology.index') }}">Our Technology </a></li>
-                        </ul>
-                    </li> --}}
 
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true">

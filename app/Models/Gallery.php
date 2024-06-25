@@ -9,8 +9,8 @@ class Gallery extends Model
     //
     protected $guarded = [];
 
-    // public function subImages()
-    // {
-    //     return $this->hasMany(SubImage::class);
-    // }
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

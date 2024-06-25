@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Cleverbiz - Real Estate</title>
+    <title>{{ env('APP_NAME') }}</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }} ">
     <link href="{{ asset('assets/css/style.css') }} " rel="stylesheet">
@@ -24,7 +24,7 @@
         <header class="main-header">
             <nav class="navbar navbar-static-top">
                 <div align="center" style="color: #fff; font-size: 30px; padding: 10px;">
-                    <b>Cleverbiz - Real Estate ADMIN PORTAL</b>
+                    <b>{{ env('APP_NAME') }} ADMIN PORTAL</b>
                     <div style="font-size: 18px;"><small>(Extending a Helping Hand!)</small></div>
                     {{-- <!--<img src="{{ asset('Images/coat.jpg') }}" height="45" align="left" style="border-radius: 4px;">--> --}}
                 </div>
@@ -151,7 +151,7 @@
                         <div align="center" style="color: #fff; font-size: 15px; padding: 10px;">
                             {{-- <!--<img src="{{ asset('Images/coat.jpg') }}" height="30" style="border-radius: 4px;">--> --}}
                             <b>Designed by</b> <a href="https://elidantech.com" target="_blank"
-                                style="color: white;">Cleverbiz - Real Estate</a> |
+                                style="color: white;">{{ env('APP_NAME') }}</a> |
                             <strong>Copyright &copy; <?php echo date('Y'); ?> .</strong> All rights reserved.
                             {{-- <img src="{{ asset('Images/coat.jpg') }}" height="30" style="border-radius: 4px;"> --}}
                         </div>

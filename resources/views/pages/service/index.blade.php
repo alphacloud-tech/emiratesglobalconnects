@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -34,8 +34,8 @@
                             <thead class="text-capitalize">
                                 <tr>
                                     <th>S/N</th>
-                                    <th>Dark image</th>
-                                    <th>Light image</th>
+                                    <th>Main image</th>
+                                    <th>Others image</th>
                                     <th>Title</th>
                                     {{-- <th>Color</th>
                                     <th>Route</th> --}}
@@ -56,19 +56,58 @@
 
                                         <td>
 
-                                            @foreach ($item->subimages as $subimage)
-                                                <div class="form-group col-md-12">
+                                            <div class="form-group col-md-12" style="display: flex; flex-wrap: wrap;">
+                                                @foreach ($item->subimages as $subimage)
                                                     <div class="image-preview-container">
                                                         <div class="image-preview">
                                                             <img width="100px" src="{{ asset($subimage->image_url) }}"
                                                                 alt="{{ $item->title }}">
+
+
                                                             <button class="delete-btn">
-                                                                <i class="fa fa-trash"></i>
+                                                                <i class="fa fa-trash btn btn-danger" class="btn btn-danger"
+                                                                    data-toggle="modal"
+                                                                    data-target="#deleteModalCenter2{{ $subimage->id }}"
+                                                                    class="delete" title="Delete" data-toggle="tooltip"></i>
                                                             </button>
+
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
+
+                                                    <div class="modal fade" id="deleteModalCenter2{{ $subimage->id }}"
+                                                        aria-hidden="true" style="display: none;">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Delete Sub Image For -
+                                                                        {{ $item->title }}</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal"><span>×</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form
+                                                                        action="{{ route('service.destroy2', $subimage->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        {{-- @method('DELETE') --}}
+
+                                                                        <p>Are you sure you want to delete?</p>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-danger">Delete</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
 
                                         </td>
                                         <td>{{ $item->title }} </td>
@@ -148,7 +187,8 @@
                                                             </div>
 
                                                             <div class="form-group col-md-12">
-                                                                <label>Other images ( &nbsp;<i style="color: red">optional 2
+                                                                <label>Other images ( &nbsp;<i style="color: red">optional
+                                                                        2
                                                                         max
                                                                         images</i> &nbsp;)</label>
                                                                 <div class="input-group mb-3">
@@ -175,8 +215,6 @@
                                                             <div class="form-group col-md-12">
                                                                 <label>Description</label>
 
-                                                                <input type="text" id="unique"
-                                                                    value="editor1{{ $item->id }}">
                                                                 <textarea class="ckeditor-textarea" name="description" cols="30" rows="10"
                                                                     id="editor1{{ $item->id }}">
                                                                     {!! $item->description !!}
@@ -332,7 +370,7 @@
 
                             <div class="form-group col-md-12">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" rows="10" cols="10" id="editor2"></textarea>
+                                <textarea class="form-control ckeditor-textarea1" name="description" rows="10" cols="10" id="editor2"></textarea>
                             </div>
 
                         </div>
@@ -481,12 +519,6 @@
         }
     </style>
 
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -494,28 +526,6 @@
 
 
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-
-            $('.edit').click(function() {
-                // Find the ID of the modal associated with the clicked edit button
-                let modalId = $(this).data('target');
-                // alert(modalId);
-
-                // Find the CKEditor textarea within the modal
-                let editorId = $(modalId).find('.ckeditor-textarea').attr('id');
-
-                // Initialize CKEditor for the current textarea
-                ClassicEditor
-                    .create(document.querySelector('#' + editorId))
-                    .catch(error => {
-
-                        console.error("im getting error", error);
-                    });
-            });
-        });
-    </script>
-
     <script>
         document.getElementById('file-upload').addEventListener('change', function() {
             const previewContainer = document.querySelector('.image-preview-container');

@@ -72,64 +72,7 @@
 
     <!-- Start of why choose section
     ============================================= -->
-    <section id="ft-why-choose" class="ft-why-choose-section position-relative"
-        data-background="{{ asset('frontend/assets/img/bg/wc-bg.jpg') }} ">
-        <div class="container">
-            <div class="ft-why-choose-content">
-                <div class="row justify-content-end">
-                    <div class="col-lg-7">
-                        <div class="ft-why-choose-text-area">
-                            <div class="ft-section-title headline pera-content wow fadeInUp" data-wow-delay="0ms"
-                                data-wow-duration="1500ms">
-                                <span class="sub-title">Why Choose Us</span>
-                                <h2>We Aim to Contribute Well
-                                    to Your Company
-                                </h2>
-                            </div>
-                            <div class="ft-why-choose-feature-wrapper">
-                                <div class="ft-why-choose-feature-item d-flex align-items-center wow fadeInUp"
-                                    data-wow-delay="200ms" data-wow-duration="1500ms">
-                                    <div
-                                        class="ft-why-choose-feature-icon d-flex align-items-center justify-content-center position-relative">
-                                        <i class="flaticon-logistics"></i>
-                                    </div>
-                                    <div class="ft-why-choose-feature-text headline pera-content">
-                                        <h3>Fast Transportion Service</h3>
-                                        <p>Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore et
-                                            dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                                <div class="ft-why-choose-feature-item d-flex align-items-center wow fadeInUp"
-                                    data-wow-delay="400ms" data-wow-duration="1500ms">
-                                    <div
-                                        class="ft-why-choose-feature-icon d-flex align-items-center justify-content-center position-relative">
-                                        <i class="flaticon-shield-1"></i>
-                                    </div>
-                                    <div class="ft-why-choose-feature-text headline pera-content">
-                                        <h3>Safety and Reliability</h3>
-                                        <p>Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore et
-                                            dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                                <div class="ft-why-choose-feature-item d-flex align-items-center wow fadeInUp"
-                                    data-wow-delay="600ms" data-wow-duration="1500ms">
-                                    <div
-                                        class="ft-why-choose-feature-icon d-flex align-items-center justify-content-center position-relative">
-                                        <i class="flaticon-global-shipping"></i>
-                                    </div>
-                                    <div class="ft-why-choose-feature-text headline pera-content">
-                                        <h3>Shipping Worldwide</h3>
-                                        <p>Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore et
-                                            dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <livewire:why-choose-us />
     <!-- End of of why choose section
     ============================================= -->
 
@@ -154,7 +97,30 @@
 
     <!-- Start of Contact section
     ================================ appointment ============= -->
-    <livewire:appointment-form />
+
+    <section id="ft-contact" class="ft-contact-section position-relative"
+        data-background="{{ asset('frontend/assets/img/bg/c-bg.jpg') }}">
+        <div class="container">
+            <div class="ft-contact-content">
+                <div class="ft-section-title headline pera-content">
+                    <span class="sub-title">Project Estimateing</span>
+                    <h2>Request A Quick Quotes
+                    </h2>
+                    <p>
+                        Request a Quick Quote for Your Project Estimating Needs! Our team at Emirates Global Connect
+                        Logistics & Travel is ready to provide you with fast and accurate estimates tailored to your
+                        specific requirements. Get in touch with us today to start planning your project with
+                        confidence.
+                    </p>
+                </div>
+                <div class="ft-contact-form-wrapper">
+                    <livewire:appointment-form />
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- End of Contact section
     ============================================= -->
     <!-- Start of Blog section

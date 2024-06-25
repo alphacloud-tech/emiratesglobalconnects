@@ -54,8 +54,8 @@ class PropertyFeatureController extends Controller
      */
     public function update(Request $request, PropertyFeature $feature)
     {
-       // Validate the request data
-       $data = $request->validate([
+        // Validate the request data
+        $data = $request->validate([
             'feature_name' => '',
             'dimension' => '',
         ]);

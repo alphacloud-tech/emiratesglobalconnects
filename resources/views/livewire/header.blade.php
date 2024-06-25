@@ -33,7 +33,7 @@
                         <div class="ft-site-logo-area">
                             <div class="ft-site-logo position-relative">
                                 <a href="{{ url('/') }}">
-                                    <img src="{{ asset($setting->logo) }}" alt="">
+                                    <img style="" src="{{ asset($setting->logo) }}" alt="">
                                 </a>
                             </div>
                         </div>

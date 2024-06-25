@@ -75,6 +75,64 @@
     @yield('styles')
     <!--========================================================================-->
 
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+    <style>
+        /* Change color of next and previous arrows in Fancybox to white */
+        .fancybox-button--arrow_right path,
+        .fancybox-button--arrow_left path {
+            fill: white !important;
+        }
+    </style>
+
+    <style>
+        .gallery-item {
+            position: relative;
+            display: block;
+        }
+
+        .gallery-overlay2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ea1e00;
+            /* Transparent white background */
+            display: none;
+            /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            /* opacity: 0.7; */
+            transition: background-color 0.3s ease;
+        }
+
+        .gallery-overlay2 i {
+            font-size: 60px;
+            /* Adjust icon size */
+            color: #ea1e00;
+            /* Icon color */
+        }
+
+        ..gallery-item:hover .gallery-overlay2 {
+            display: flex;
+            /* Show overlay on hover */
+        }
+    </style>
+
+    <style>
+        .fancybox-button--arrow_right .fancybox-button__icon {
+            color: #fff;
+            /* Change to your desired color */
+            background-color: transparent !important;
+        }
+
+        .fancybox-bg {
+            background-color: transparent !important;
+        }
+    </style>
+
 
     @livewireStyles
 
@@ -89,15 +147,15 @@
             <a href="#" class="scrollup text-center"><i class="fas fa-chevron-up"></i></a>
         </div>
 
-        <livewire:header />
+        {{-- <livewire:header2 /> --}}
 
-        {{-- @if (request()->is('/'))
-                <!-- Use Header 1 -->
-                <livewire:header />
-            @else
-                <!-- Use Header 2 -->
-                <livewire:header2 />
-            @endif --}}
+        @if (request()->is('/'))
+            <!-- Use Header 1 -->
+            <livewire:header2 />
+        @else
+            <!-- Use Header 2 -->
+            <livewire:header />
+        @endif
 
 
         @yield('content')
@@ -220,6 +278,17 @@
                     cookieConsent.style.display = 'none';
                 });
             }
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize fancybox only for the anchor tags with class 'gallery-item'
+            $('.gallery-item').fancybox({
+                // Specify fancybox options as needed
+            });
         });
     </script>
 

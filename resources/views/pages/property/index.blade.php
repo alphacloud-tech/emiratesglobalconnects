@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -14,7 +14,7 @@
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
                         <h4>Hi, welcome back!</h4>
-                        <p class="mb-0">Cleverbiz - Real Estate</p>
+                        <p class="mb-0">{{ env('APP_NAME') }}</p>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -163,7 +163,8 @@
 
                                                                     <div class="form-group col-md-6">
                                                                         <label>Location</label>
-                                                                        <input type="text" class="form-control" placeholder="" name="location"
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="" name="location"
                                                                             value="{{ $item->location }}">
                                                                     </div>
 
@@ -185,60 +186,73 @@
                                                                     </div>
 
                                                                     <div class="form-group col-md-6">
-                                                                        <label>Facts and Features - <i style="color: #f44336">Multiple</i></label>
-                                                                        <select multiple class="form-control" name="features[]" id="sel2">
+                                                                        <label>Facts and Features - <i
+                                                                                style="color: #f44336">Multiple</i></label>
+                                                                        <select multiple class="form-control"
+                                                                            name="features[]" id="sel2">
                                                                             @foreach ($features as $feature)
-                                                                                <option value="{{ $feature->id }}">{{ $feature->feature_name }}</option>
+                                                                                <option value="{{ $feature->id }}">
+                                                                                    {{ $feature->feature_name }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
 
                                                                     <div class="form-group col-md-6">
                                                                         <label>Home Area</label>
-                                                                        <input type="text" class="form-control" placeholder="120 sqft"
-                                                                            name="property_area" value="{{ $item->detail->home_area }}">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="120 sqft" name="property_area"
+                                                                            value="{{ $item->detail->home_area }}">
                                                                     </div>
 
                                                                     <div class="form-group col-md-6">
                                                                         <label>Lot dimensions</label>
-                                                                        <input type="text" class="form-control" placeholder="120 sqft"
-                                                                            name="lot_dimensions" value="{{ $item->detail->lot_dimensions }}">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="120 sqft" name="lot_dimensions"
+                                                                            value="{{ $item->detail->lot_dimensions }}">
                                                                     </div>
 
                                                                     <div class="form-group col-md-6">
                                                                         <label>Lot Area</label>
-                                                                        <input type="text" class="form-control" placeholder="Uniqure Id"
-                                                                            name="lot_area" value="{{ $item->detail->lot_area }}">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Uniqure Id" name="lot_area"
+                                                                            value="{{ $item->detail->lot_area }}">
                                                                     </div>
 
                                                                     <div class="form-group col-md-6">
                                                                         <label>Rooms</label>
-                                                                        <input type="text" class="form-control" placeholder="Number of rooms"
-                                                                            name="rooms" value="{{ $item->detail->rooms }}">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Number of rooms" name="rooms"
+                                                                            value="{{ $item->detail->rooms }}">
                                                                     </div>
                                                                     <div class="form-group col-md-6">
                                                                         <label>Beds</label>
-                                                                        <input type="text" class="form-control" placeholder="Number of beds"
-                                                                            name="beds" value="{{ $item->detail->beds }}">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Number of beds" name="beds"
+                                                                            value="{{ $item->detail->beds }}">
                                                                     </div>
                                                                     <div class="form-group col-md-6">
                                                                         <label>Baths</label>
-                                                                        <input type="text" class="form-control" placeholder="Number of baths"
-                                                                            name="baths" value="{{ $item->detail->baths }}">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Number of baths" name="baths"
+                                                                            value="{{ $item->detail->baths }}">
                                                                     </div>
 
                                                                     <div class="form-group col-md-12">
-                                                                        <label>Other images ( &nbsp;<i style="color: red">Required 4 max
+                                                                        <label>Other images ( &nbsp;<i
+                                                                                style="color: red">Required 4 max
                                                                                 images</i>
                                                                             &nbsp;)</label>
                                                                         <div class="input-group mb-3">
                                                                             <div class="input-group-prepend">
-                                                                                <span class="input-group-text">Upload</span>
+                                                                                <span
+                                                                                    class="input-group-text">Upload</span>
                                                                             </div>
                                                                             <div class="custom-file">
 
-                                                                                <input name="image_url_light[]" class="custom-file-input"
-                                                                                    id="file-upload" type="file" multiple />
+                                                                                <input name="image_url_light[]"
+                                                                                    class="custom-file-input"
+                                                                                    id="file-upload" type="file"
+                                                                                    multiple />
 
                                                                                 <label class="custom-file-label">Choose
                                                                                     file</label>

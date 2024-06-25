@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Slider;
+use App\Models\SubImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Image;
@@ -42,8 +43,8 @@ class SliderController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(1900, 900, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(1900, 900, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -91,8 +92,8 @@ class SliderController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(1900, 900, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(1900, 900, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -126,6 +127,7 @@ class SliderController extends Controller
 
         return redirect()->route('slider.index')->with('success', 'Slider deleted successfully');
     }
+
 
 
     public function activation(Request $request, Slider $slider)

@@ -54,7 +54,7 @@ class ServiceController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->fit(400, 400, function ($constraint) {
+                ->fit(370, 400, function ($constraint) {
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -223,5 +223,33 @@ class ServiceController extends Controller
         ]);
 
         return response()->json(['success' => true]);
+    }
+
+
+    public function destroy2($id)
+    {
+
+        $subimage = SubImage::find($id);
+
+        // dd($id);
+
+        // Check if an image is associated with the slider
+        if ($subimage) {
+            // Get the path of the image
+            $imagePath = public_path($subimage->image_url);
+
+            // dd($imagePath);
+
+
+            // Check if the image file exists and delete it
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        // Delete the resource from the database
+        $subimage->delete();
+
+        return redirect()->route('service.index')->with('success', 'Image deleted successfully');
     }
 }

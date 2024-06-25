@@ -43,8 +43,8 @@ class OurTechnologyController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(452, 128, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(452, 128, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 })// Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -61,10 +61,10 @@ class OurTechnologyController extends Controller
             // Move the uploaded image to the storage path
             $image->move($imagePath, $imageName);
 
-            // Resize the image
+            // fit the image
             $resizedImage = Image::make($imagePath . $imageName)
                 ->resize(452, 128, function ($constraint) {
-                    $constraint->aspectRatio();
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -107,8 +107,8 @@ class OurTechnologyController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(452, 128, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(452, 128, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
@@ -134,8 +134,8 @@ class OurTechnologyController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(452, 128, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(452, 128, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 })// Adjust the dimensions as needed
                 ->save($imagePath . $imageName);

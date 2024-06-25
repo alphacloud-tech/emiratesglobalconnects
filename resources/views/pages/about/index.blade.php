@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -28,7 +28,7 @@
         <div class="col-12 mt-4">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Slider</h4>
+                    <h4 class="header-title">About Us</h4>
                     <div class="table-responsive datatable-primary">
                         <table id="dataTable2" class="text-center33">
                             <thead class="text-capitalize">
@@ -138,23 +138,22 @@
                                                             </div>
 
 
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-12">
                                                                 <label>Short Description</label>
                                                                 {{-- <textarea class="summernote" name="content_short">{{ $item->content_short }}</textarea> --}}
 
                                                                 <input type="hidden" id="unique"
                                                                     value="editor1{{ $item->id }}">
-                                                                <textarea class="ckeditor-textarea" name="content_short" cols="30" rows="10"
-                                                                    id="editor1{{ $item->id }}">{!! $item->content_short !!}</textarea>
+                                                                <textarea class="ckeditor-textarea" name="content_short" cols="30" rows="10" id="editor1{{ $item->id }}">{!! $item->content_short !!}</textarea>
 
                                                             </div>
 
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-12">
                                                                 <label>Description</label>
                                                                 {{-- <textarea class="summernote" name="description">{{ $item->description }}</textarea> --}}
                                                                 <input type="hidden" id="unique"
                                                                     value="editor2{{ $item->id }}">
-                                                                <textarea class="ckeditor-textarea2" name="description" cols="30" rows="10"
+                                                                <textarea class="ckeditor-textarea" name="description" cols="30" rows="10"
                                                                     id="editor2{{ $item->id }}">{!! $item->description !!}</textarea>
 
                                                             </div>
@@ -290,12 +289,13 @@
 
                             <div class="form-group col-md-12">
                                 <label>Short Description</label>
-                                <textarea class="summernote" name="content_short" id="editor2"></textarea>
+                                <textarea class="ckeditor-textarea1" name="content_short" style="min-height: 1200px;" id="editor1"></textarea>
+
                             </div>
 
                             <div class="form-group col-md-12">
                                 <label>Description</label>
-                                <textarea class="summernote" name="description" id="editor3"></textarea>
+                                <textarea class="ckeditor-textarea1" name="description" id="editor2"></textarea>
                             </div>
 
                         </div>
@@ -378,48 +378,12 @@
         }
     </style>
 
-
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @endsection
 
 
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-
-            $('.edit').click(function() {
-                // Find the ID of the modal associated with the clicked edit button
-                let modalId = $(this).data('target');
-                // alert(modalId);
-
-                // Find the CKEditor textarea within the modal
-                let editorId = $(modalId).find('.ckeditor-textarea').attr('id');
-                let editorId2 = $(modalId).find('.ckeditor-textarea2').attr('id');
-                // Initialize CKEditor for the current textarea
-                ClassicEditor
-                    .create(document.querySelector('#' + editorId))
-                    .catch(error => {
-
-                        console.error("im getting error", error);
-                    });
-
-                ClassicEditor
-                    .create(document.querySelector('#' + editorId2))
-                    .catch(error => {
-
-                        console.error("im getting error", error);
-                    });
-            });
-        });
-    </script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const csrfToken = $('meta[name="csrf-token"]').attr('content');

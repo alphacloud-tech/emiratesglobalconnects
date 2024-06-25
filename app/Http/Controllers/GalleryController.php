@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Image;
@@ -20,7 +21,10 @@ class GalleryController extends Controller
         $gallerys = Gallery::latest() // Retrieve the latest gallery
             ->get();
 
-        return view('pages.gallery.index', compact('gallerys'));
+        $services = Service::latest() // Retrieve the latest gallery
+            ->get();
+
+        return view('pages.gallery.index', compact('gallerys', 'services'));
     }
 
 
@@ -29,8 +33,10 @@ class GalleryController extends Controller
 
         $data = $request->validate([
             'image_url.*' => 'required|image|mimes:jpeg,png,jpg',
+            'service_id' => 'required',
         ]);
 
+        $service = Service::find($request->service_id);
 
         foreach ($request->file('image_url') as $file) {
             $imageName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
@@ -38,22 +44,18 @@ class GalleryController extends Controller
 
             // Move the uploaded image to the storage path
             if ($file->move($imagePath, $imageName)) {
-                // Resize the image
-                // $resizedImage = Image::make($imagePath . $imageName)
-                //     ->resize(370, 270, function ($constraint) {
-                //         $constraint->aspectRatio();
-                //         $constraint->upsize();
-                //     })
+
                 $resizedImage = Image::make($imagePath . $imageName)
                     ->fit(600, 700, function ($constraint) {
                         $constraint->upsize(); // Maintain aspect ratio
                     })
-                ->save($imagePath . $imageName);
+                    ->save($imagePath . $imageName);
 
                 if ($resizedImage) {
                     Gallery::create([
                         'image_url' => 'uploads/gallery/' . $imageName,
-                        'title' => $request->title,
+                        'title' => $service->title,
+                        'service_id' => $request->service_id,
                         'active' => 1
                     ]);
                 } else {
@@ -62,7 +64,7 @@ class GalleryController extends Controller
                 }
             } else {
                 // Log error or handle failure to move image
-               Log::error('Failed to move image: ' . $imageName);
+                Log::error('Failed to move image: ' . $imageName);
             }
         }
 
@@ -74,11 +76,18 @@ class GalleryController extends Controller
     {
         // Validate the request data
         $data = $request->validate([
-            'image_url' => 'required',
+            'image_url' => '',
+            'service_id' => 'required',
         ]);
 
 
         $old_img  = $request->old_img;
+
+        $service = null;
+
+        if ($request->service_id) {
+            $service = Service::find($request->service_id);
+        }
 
         // Check if a new image was uploaded
         if ($request->hasFile('image_url')) {
@@ -96,16 +105,22 @@ class GalleryController extends Controller
 
             // Resize the image
             $resizedImage = Image::make($imagePath . $imageName)
-                ->resize(600, 700, function ($constraint) {
-                    $constraint->aspectRatio();
+                ->fit(600, 700, function ($constraint) {
+                    // $constraint->aspectRatio();
                     $constraint->upsize();
                 }) // Adjust the dimensions as needed
                 ->save($imagePath . $imageName);
 
             // Update the image path in the database
             $data['image_url'] = 'uploads/gallery/' . $imageName;
-            $gallery->update($data);
+
         }
+
+        $gallery->update([
+            'image_url' => 'uploads/gallery/' . $imageName,
+            'title' => $service ? $service->title : $gallery->title,
+            'service_id' => $service ? $service->id : $gallery->service_id,
+        ]);
 
         // Update the gallery model with the validated data
 

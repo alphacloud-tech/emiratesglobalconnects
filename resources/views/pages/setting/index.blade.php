@@ -1,6 +1,6 @@
 @extends('layouts.siteLayout')
 @section('pageTitle')
-    Cleverbiz - Real Estate
+    {{ env('APP_NAME') }}
 @endsection
 @section('setHomeActive')
     active
@@ -666,8 +666,6 @@
 
 
 @section('scripts')
-
-
     <script>
         document.getElementById('file-upload').addEventListener('change', function() {
             const previewContainer = document.querySelector('.image-preview-container');

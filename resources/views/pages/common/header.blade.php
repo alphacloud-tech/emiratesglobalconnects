@@ -1,7 +1,7 @@
 <div class="header-area">
     <div class="row align-items-center">
         <div class="mobile-logo d_none_lg">
-            <a href="index.html"><img src="{{ asset('backend/images/mobile-logo.png') }} " alt="logo" /></a>
+            <a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
         </div>
 
         <div class="col-md-6 d_none_sm d-flex align-items-center">

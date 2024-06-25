@@ -52,12 +52,16 @@
                                 </div>
                                 <div class="ft-blog-post-feed-text-wrapper headline pera-content">
                                     <div class="blog-meta">
-                                        <a><i class="fas fa-user"></i> By Admin</a>
-                                        <a><i class="fas fa-user"></i> {{ $day }}
-                                            {{ $month }}/{{ $year }}</a>
-                                        <a href="{{ route('blog.cat', $name) }}"><i
-                                                class="fas fa-tag"></i>{{ $item->category->name }}</a>
+                                        <a style="font-size: 13px"><i class="fas fa-user"></i> By Admin
+                                        </a>
+                                        <a style="font-size: 13px"><i class="fas fa-user"></i> {{ $day }}
+                                            {{ $month }}/{{ $year }}
+                                        </a>
+                                        <a style="font-size: 13px" href="{{ route('blog.cat', $name) }}">
+                                            <i class="fas fa-tag"></i>{{ $item->category->name }}
+                                        </a>
                                     </div>
+
                                     <div class="ft-blog-feed-title-text">
                                         <h3><a href="{{ route('blog.single', $title) }}">{{ $item->title }}</a></h3>
                                         <p>{!! \Illuminate\Support\Str::limit($item->content, 200) !!} </p>
